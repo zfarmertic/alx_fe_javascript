@@ -37,7 +37,7 @@ const newQuoteText = document.getElementById("newQuoteText")
 
 const newQuoteCategory = document.getElementById("newQuoteCategory")
 
-function addQuote(){
+function createAddQuoteForm(){
     const userObj = {}
     userObj.category = newQuoteCategory.value;
     userObj.text = newQuoteText.value;
