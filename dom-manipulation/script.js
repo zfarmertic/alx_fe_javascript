@@ -45,4 +45,10 @@ function addQuote(){
     quoteObj.push(userObj)
 
     console.log(quoteObj)
+
+    const randomIndex = Math.floor(Math.random() * quoteObj.length)
+    const Quoted = quoteObj[randomIndex].text
+    const div = document.createElement("div")
+    div.innerHTML = Quoted
+    quoteDisplay.appendChild(div)
 }
