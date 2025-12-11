@@ -50,4 +50,24 @@ exportButton.addEventListener("click", retrieveQuote)
 
 
 
+function exportToJsonFile() {
+    // Convert the array to a JSON string
+    const jsonString = JSON.stringify(quotes, null, 2); // 2 spaces for formatting
 
+    // Create a Blob containing the JSON data
+    const blob = new Blob([jsonString], { type: 'application/json' });
+
+    // Create an anchor element and set its download attributes
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'quotes_export.json';
+
+    // Programmatically click the link to trigger the download
+    document.body.appendChild(a); // Append to the body temporarily
+    a.click();
+
+    // Clean up
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
