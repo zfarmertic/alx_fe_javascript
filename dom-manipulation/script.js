@@ -37,6 +37,13 @@ function createAddQuoteForm (){
         }
 }
 
+const addStorage = () =>{
+    localStorage.setItem("userquote", quotes)
+}
 
 
+const retrieveQuote = () =>{
+    localStorage.getItem("userquote")
+    console.log(userquote)
+}
 
