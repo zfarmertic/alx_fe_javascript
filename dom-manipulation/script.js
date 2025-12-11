@@ -36,14 +36,18 @@ function createAddQuoteForm (){
             alert("Enter a quote and category")
         }
 }
-
 const addStorage = () =>{
-    localStorage.setItem("userquote", quotes)
+    localStorage.setItem('localQuotes', JSON.stringify(quotes));
+    console.log(localQuotes)
 }
 
 
 const retrieveQuote = () =>{
-    localStorage.getItem("userquote")
-    console.log(userquote)
+    const abc = localStorage.getItem("localQuotes")
+    console.log(JSON.parse(abc))
 }
+exportButton.addEventListener("click", retrieveQuote)
+
+
+
 
