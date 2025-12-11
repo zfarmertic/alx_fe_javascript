@@ -29,8 +29,14 @@ function createAddQuoteForm (){
                 category: newQuoteCategory.value,
                 text: newQuoteText.value
             }
-            userQuote.innerHTML = userObj.text
+            const h1 = document.createElement("h1")
+            h1.textContent = userObj.text
+            userQuote.appendChild(h1)
         }else{
             alert("Enter a quote and category")
         }
 }
+
+
+
+
