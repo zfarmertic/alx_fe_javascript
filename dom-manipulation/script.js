@@ -71,3 +71,37 @@ function exportToJsonFile() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
+function importFromJsonFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const fileReader = new FileReader();
+
+    fileReader.onload = function(event) {
+        try {
+            // 1. Parse the JSON string from the file content
+            const importedQuotes = JSON.parse(event.target.result);
+            
+            if (Array.isArray(importedQuotes) && importedQuotes.every(q => q.text && q.category)) {
+                // 2. Merge the imported quotes into the existing array
+                // The spread syntax (...) adds all elements from importedQuotes individually.
+                quotes.push(...importedQuotes);
+
+                // 3. Save the new combined array to Local Storage
+                saveQuotes();
+                
+                // 4. Update the display
+                quoteDisplay.innerHTML = `<p>✅ ${importedQuotes.length} quotes imported successfully! Total quotes: ${quotes.length}</p>`;
+                console.log('Quotes imported and saved successfully!');
+            } else {
+                 alert('Invalid JSON structure: Each item must have a "text" and "category".');
+            }
+        } catch (e) {
+            alert('Error parsing JSON file. Please ensure the file is valid.');
+            console.error('JSON Parsing Error:', e);
+        }
+    };
+    
+    // Read the file content as text
+    fileReader.readAsText(file);
+}
